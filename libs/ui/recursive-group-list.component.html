@@ -1,9 +1,0 @@
-
-<div *ngIf="group">
-  <h3>{{ group.name }}</h3>
-  <ul *ngIf="group.children && group.children.length">
-    <li *ngFor="let child of group.children">
-      <app-recursive-group-list [group]="child"></app-recursive-group-list>
-    </li>
-  </ul>
-</div>

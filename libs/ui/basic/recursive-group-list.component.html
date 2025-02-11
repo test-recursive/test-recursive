@@ -1,0 +1,17 @@
+@if (groups) {
+  @for (group of groups; track $index) {
+    <div class="group-item" (click)="group.toggleGroup()">
+      <span>{{ group.name }}</span>
+      @if (group.isGroup()) {
+
+      }
+      <span> (click to expand/collapse)</span>
+    </div>
+
+    <!-- Conditionally render subgroups if the group is expanded -->
+    @if (group && group.isExpanded()) {
+      <app-recursive-group-list [groups]="group.groups ?? []"></app-recursive-group-list>
+    }
+
+  }
+}
