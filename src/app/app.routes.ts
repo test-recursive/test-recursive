@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { TestRecursiveComponent } from '../../libs/ui/test-recursive.component';
+import { RecursiveGroupListComponent } from '../../libs/ui/recursive-group-list.component';
 
 export const routes: Routes = [
-  {path: '', component: TestRecursiveComponent}
+  {path: '', component: RecursiveGroupListComponent}
 ];
