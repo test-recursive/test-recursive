@@ -8,17 +8,16 @@
   <!-- For nodes with children and toggle functionality -->
   <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding matTreeNodeToggle
                 [cdkTreeNodeTypeaheadLabel]="node.item">
-    <button mat-icon-button
-            [attr.aria-label]="'Toggle ' + node.item" matTreeNodeToggle>
+    <button [attr.aria-label]="'Toggle ' + node.item" matTreeNodeToggle>
 
       <!-- Display expand_more when the node is not loading and is expanded -->
        @if (!node.isLoading() && treeControl.isExpanded(node)) {
-        <mat-icon>expand_more</mat-icon>
+        <fa-icon class="fa-solid fa-chevron-down"></fa-icon>
        }
 
       <!-- Display expand_less when the node is not loading and is collapsed -->
        @if (!node.isLoading() && !treeControl.isExpanded(node)) {
-        <mat-icon>expand_less</mat-icon>
+        <fa-icon class="fa-solid fa-chevron-up"></fa-icon>
        }
 
 

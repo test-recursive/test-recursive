@@ -1,12 +1,13 @@
+import { FontawesomeObject } from './../../../node_modules/@fortawesome/fontawesome-svg-core/index.d';
 import {CollectionViewer, SelectionChange, DataSource} from '@angular/cdk/collections';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {ChangeDetectionStrategy, Component, Injectable, inject, signal} from '@angular/core';
 import {BehaviorSubject, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTreeModule} from '@angular/material/tree';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /** Flat node with expandable and level information */
 export class DynamicFlatNode {
@@ -146,7 +147,7 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
   selector: 'tree-dynamic-example',
   templateUrl: 'tree-dynamic-example.component.html',
   styleUrls: ['tree-dynamic-example.component.scss'],
-  imports: [MatTreeModule, MatButtonModule, MatIconModule, MatProgressBarModule],
+  imports: [MatTreeModule, MatButtonModule, MatProgressBarModule, FontAwesomeModule],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
