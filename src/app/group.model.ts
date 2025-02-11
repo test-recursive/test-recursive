@@ -31,10 +31,19 @@ class GroupImpl implements Group {
 
 const groups: GroupImpl[] = [
     new GroupImpl('Fruits', false, [
-        new GroupImpl('Apple', false),
+        new GroupImpl('Apple', false, [
+            new GroupImpl('Green Apple', false),
+            new GroupImpl('Red Apple', false)
+        ]),
         new GroupImpl('Banana', false)
     ]),
-    new GroupImpl('Vegetables', false)
+    new GroupImpl('Vegetables', false, [
+        new GroupImpl('Tomato', false, [
+            new GroupImpl('Red Tomato', false),
+            new GroupImpl('Green Tomato', false)
+        ]),
+        new GroupImpl('Cucumber', false)
+    ])
 ];
 
 

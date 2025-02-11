@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { groups, GroupImpl } from '../../../src/app/group.model';
+import { groups, GroupImpl, Group } from '../../../src/app/group.model';
 
 
 
@@ -13,9 +13,9 @@ import { groups, GroupImpl } from '../../../src/app/group.model';
 })
 export class RecursiveGroupListComponent {
   @Input()
-  groups: GroupImpl[] = groups;
+  groups: Group[] = groups;
   @Input()
-  group: GroupImpl | null = null;
+  group: Group | null = null;
 
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class RecursiveGroupListComponent {
     }
 
     // Iterate over groups to set methods correctly
-    this.groups.forEach((group: GroupImpl) => {
+    this.groups.forEach((group: Group) => {
       // Attach methods to the group
       group.toggleGroup = () => {
         group.expanded = !group.expanded;
