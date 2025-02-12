@@ -1,12 +1,11 @@
-import { FontawesomeObject } from './../../../node_modules/@fortawesome/fontawesome-svg-core/index.d';
-import {CollectionViewer, SelectionChange, DataSource} from '@angular/cdk/collections';
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {ChangeDetectionStrategy, Component, Injectable, inject, signal} from '@angular/core';
-import {BehaviorSubject, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTreeModule} from '@angular/material/tree';
+import { CollectionViewer, SelectionChange, DataSource } from '@angular/cdk/collections';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { ChangeDetectionStrategy, Component, Injectable, inject, signal } from '@angular/core';
+import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTreeModule } from '@angular/material/tree';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /** Flat node with expandable and level information */
@@ -139,7 +138,6 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
   }
 }
 
-
 /**
  * @title Tree with dynamic data
  */
@@ -152,6 +150,9 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeDynamicExample {
+  treeControl: FlatTreeControl<DynamicFlatNode>;
+  dataSource: DynamicDataSource;
+
   constructor() {
     const database = inject(DynamicDatabase);
 
@@ -161,11 +162,7 @@ export class TreeDynamicExample {
     this.dataSource.data = database.initialData();
   }
 
-  treeControl: FlatTreeControl<DynamicFlatNode>;
-  dataSource: DynamicDataSource;
-
   getLevel = (node: DynamicFlatNode) => node.level;
   isExpandable = (node: DynamicFlatNode) => node.expandable;
   hasChild = (_: number, _nodeData: DynamicFlatNode) => _nodeData.expandable;
 }
-
