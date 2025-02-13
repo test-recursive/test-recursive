@@ -1,8 +1,8 @@
-<div *ngFor="let group of groups; let i = index" class="group-item">
+<div *ngFor="let group of groups; let i = index" class="m-1">
   <div
     (click)="group.toggleGroup()"
     [ngClass]="{'expanded': group.isExpanded(), 'collapsed': !group.isExpanded()}"
-    class="group-node">
+    class="group-node  p-2.5 border-2 border-[#1E3A8A] rounded-md cursor-pointer flex items-center justify-start transition-colors duration-300 hover:bg-[#87CEFA]">
 
     <!-- Toggle icon -->
     <span *ngIf="group.isGroup()">
@@ -11,12 +11,12 @@
     </span>
 
     <!-- Group name -->
-    <span class="group-name">{{ group.name }}</span>
+    <span class="group-name ml-2.5 font-bold">{{ group.name }}</span>
   </div>
 
   <!-- Conditionally render subgroups if the group is expanded -->
   <div *ngIf="group.isExpanded()">
-    <div class="group-subgroups">
+    <div class="group-subgroups ml-5 p-1.25">
       <clx-recursive-group-list [groups]="group.groups ?? []"></clx-recursive-group-list>
     </div>
   </div>

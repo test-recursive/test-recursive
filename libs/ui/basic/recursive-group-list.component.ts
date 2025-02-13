@@ -36,7 +36,7 @@ export class RecursiveGroupListComponent {
       };
 
       group.isExpanded = () => {
-        return group.expanded && group.isGroup();
+        return group.expanded;
       };
     });
 
