@@ -1,21 +1,21 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { groups, GroupImpl, Group } from '../../../src/app/group.model';
-
+import { groups, IGroup } from '../../../src/app/group.model';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @Component({
-  selector: 'app-recursive-group-list',
+  selector: 'clx-recursive-group-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './recursive-group-list.component.html',
   styleUrls: ['./recursive-group-list.component.css']
 })
 export class RecursiveGroupListComponent {
   @Input()
-  groups: Group[] = groups;
+  groups: IGroup[] = groups;
   @Input()
-  group: Group | null = null;
+  group: IGroup | null = null;
 
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class RecursiveGroupListComponent {
     }
 
     // Iterate over groups to set methods correctly
-    this.groups.forEach((group: Group) => {
+    this.groups.forEach((group: IGroup) => {
       // Attach methods to the group
       group.toggleGroup = () => {
         group.expanded = !group.expanded;

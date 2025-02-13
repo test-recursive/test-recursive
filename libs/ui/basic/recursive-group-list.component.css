@@ -1,0 +1,60 @@
+/* General Styles */
+.group-item {
+  margin: 10px 0;
+}
+
+.group-node {
+  padding: 10px;
+  border: 2px solid #1E3A8A; /* Original color blue */
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.group-node:hover {
+  background-color: #87CEFA; /* Slightly lighter background on hover */
+}
+
+.group-node.expanded {
+  background-color: #1E3A8A; /* Original color blue */
+  border-color: #0C2D72; /* Darker blue border */
+  color: white;
+}
+
+.group-node.collapsed {
+  border-color: #1E3A8A; /* Same original color blue */
+  /* No background color for collapsed */
+}
+
+.group-name {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.toggle-icon {
+  font-size: 1.2em;
+  color: white;
+  margin-right: 10px;
+  transition: color 0.3s;
+}
+
+.group-node.expanded .toggle-icon {
+  color: #0C2D72; /* White chevron when expanded */
+}
+
+.group-node.collapsed .toggle-icon {
+  color: #1E3A8A; /* Original color blue when collapsed */
+}
+
+.group-subgroups {
+  margin-left: 20px;
+  padding: 5px;
+}
+
+.group-subgroups .group-item {
+  border-color: #0097A7; /* Different shade of blue for subgroups */
+  background-color: transparent; /* Removed background color from children */
+}
