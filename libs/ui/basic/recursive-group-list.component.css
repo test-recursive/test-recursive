@@ -1,11 +1,10 @@
-/* General Styles */
 .group-item {
   margin: 10px 0;
 }
 
 .group-node {
   padding: 10px;
-  border: 2px solid #1E3A8A; /* Original color blue */
+  border: 2px solid #1E3A8A;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -15,18 +14,17 @@
 }
 
 .group-node:hover {
-  background-color: #87CEFA; /* Slightly lighter background on hover */
+  background-color: #87CEFA;
 }
 
 .group-node.expanded {
-  background-color: #1E3A8A; /* Original color blue */
-  border-color: #0C2D72; /* Darker blue border */
+  background-color: #1E3A8A;
+  border-color: #0C2D72;
   color: white;
 }
 
 .group-node.collapsed {
-  border-color: #1E3A8A; /* Same original color blue */
-  /* No background color for collapsed */
+  border-color: #1E3A8A;
 }
 
 .group-name {
@@ -42,11 +40,11 @@
 }
 
 .group-node.expanded .toggle-icon {
-  color: #0C2D72; /* White chevron when expanded */
+  color: #0C2D72;
 }
 
 .group-node.collapsed .toggle-icon {
-  color: #1E3A8A; /* Original color blue when collapsed */
+  color: #1E3A8A;
 }
 
 .group-subgroups {
@@ -55,6 +53,6 @@
 }
 
 .group-subgroups .group-item {
-  border-color: #0097A7; /* Different shade of blue for subgroups */
-  background-color: transparent; /* Removed background color from children */
+  border-color: #0097A7;
+  background-color: transparent;
 }

@@ -1,14 +1,13 @@
 interface IGroup {
-  name: string;             // Name of the group (you can adjust this property as needed)
+  name: string;             // Name of the group
   expanded: boolean;        // Indicates if the group is expanded or not
-  groups?: IGroup[];         // A list of child groups (optional, because not all groups may have subgroups)
+  groups?: IGroup[];         // A list of child groups
 
   // Methods added to the Group interface to make it complete
-  toggleGroup(): void;      // Toggles the expanded state of the group
-  isGroup(): boolean;       // Checks if the group has children groups
-  isExpanded(): boolean;    // Checks if the group is expanded
+  toggleGroup(): void;
+  isGroup(): boolean;
+  isExpanded(): boolean;
 }
-
 class Group implements IGroup {
   constructor(
     public name: string,

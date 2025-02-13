@@ -5,9 +5,14 @@
     class="group-node">
 
     <!-- Toggle icon -->
-    <span *ngIf="group.isGroup()">
+    <!-- <span *ngIf="group.isGroup()">
       <span *ngIf="group.isExpanded()">[-]</span>
       <span *ngIf="!group.isExpanded()">[+]</span>
+    </span> -->
+
+    <span *ngIf="group.isGroup()">
+      <span *ngIf="group.isExpanded()"><i class="fa fa-chevron-down"></i></span>
+      <span *ngIf="!group.isExpanded()"><i class="fa fa-chevron-up"></i></span>
     </span>
 
     <!-- Toggle icon -->
@@ -17,7 +22,7 @@
     </span> -->
 
     <!-- Group name -->
-    <span class="group-name"><fa-icon class="fa-icon fa-chevron-down"></fa-icon>{{ group.name }}</span>
+    <span class="group-name">{{ group.name }}</span>
   </div>
 
   <!-- Conditionally render subgroups if the group is expanded -->
