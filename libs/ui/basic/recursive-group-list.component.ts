@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { groups, IGroup } from '../../../src/app/group.model';
+import { IGroup } from '../../../src/app/group.model';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -13,7 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class RecursiveGroupListComponent {
   @Input()
-  groups: IGroup[] = groups;
+  groups: IGroup[] = [];
   @Input()
   group: IGroup | null = null;
 

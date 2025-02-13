@@ -28,37 +28,8 @@ class Group implements IGroup {
   }
 }
 
-const groups: Group[] = [
-  new Group('Group 1', false, [
-    new Group('Group 1.1', false, [
-      new Group('Group 1.1.1', false),
-      new Group('Group 1.1.2', false, [
-        new Group('Group 1.1.2.1', false, [
-          new Group('Group 1.1.2.1.1', false, [
-            new Group('Group 1.1.2.1.1.1', false)
-          ])
-        ]),
-        new Group('Group 1.1.2.2', false)
-      ])
-    ]),
-    new Group('Group 1.2', false)
-  ]),
-  new Group('Group 2', false, [
-    new Group('Group 2.1', false, [
-      new Group('Group 2.1.1', false),
-      new Group('Group 2.1.2', false, [
-        new Group('Group 2.1.2.1', false, [
-          new Group('Group 2.1.2.1.1', false, [
-            new Group('Group 2.1.2.1.1.1', false)
-          ])
-        ]),
-        new Group('Group 2.1.2.2', false)
-      ])
-    ]),
-    new Group('Group 2.2', false)
-  ])
-];
 
 
 
-export { type IGroup, Group, groups };
+
+export { type IGroup, Group };
