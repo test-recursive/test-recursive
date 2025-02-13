@@ -1,7 +1,7 @@
-interface IGroup {
+interface Group {
   name: string;             // Name of the group (you can adjust this property as needed)
   expanded: boolean;        // Indicates if the group is expanded or not
-  groups?: IGroup[];         // A list of child groups (optional, because not all groups may have subgroups)
+  groups?: Group[];         // A list of child groups (optional, because not all groups may have subgroups)
 
   // Methods added to the Group interface to make it complete
   toggleGroup(): void;      // Toggles the expanded state of the group
@@ -9,11 +9,11 @@ interface IGroup {
   isExpanded(): boolean;    // Checks if the group is expanded
 }
 
-class Group implements IGroup {
+class GroupImpl implements Group {
   constructor(
     public name: string,
     public expanded: boolean = false,
-    public groups: IGroup[] = []
+    public groups: Group[] = []
   ) {}
 
   toggleGroup(): void {
@@ -29,37 +29,22 @@ class Group implements IGroup {
   }
 }
 
-const groups: Group[] = [
-  new Group('Group 1', false, [
-    new Group('Group 1.1', false, [
-      new Group('Group 1.1.1', false),
-      new Group('Group 1.1.2', false, [
-        new Group('Group 1.1.2.1', false, [
-          new Group('Group 1.1.2.1.1', false, [
-            new Group('Group 1.1.2.1.1.1', false)
-          ])
+const groups: GroupImpl[] = [
+    new GroupImpl('Fruits', false, [
+        new GroupImpl('Apple', false, [
+            new GroupImpl('Green Apple', false),
+            new GroupImpl('Red Apple', false)
         ]),
-        new Group('Group 1.1.2.2', false)
-      ])
+        new GroupImpl('Banana', false)
     ]),
-    new Group('Group 1.2', false)
-  ]),
-  new Group('Group 2', false, [
-    new Group('Group 2.1', false, [
-      new Group('Group 2.1.1', false),
-      new Group('Group 2.1.2', false, [
-        new Group('Group 2.1.2.1', false, [
-          new Group('Group 2.1.2.1.1', false, [
-            new Group('Group 2.1.2.1.1.1', false)
-          ])
+    new GroupImpl('Vegetables', false, [
+        new GroupImpl('Tomato', false, [
+            new GroupImpl('Red Tomato', false),
+            new GroupImpl('Green Tomato', false)
         ]),
-        new Group('Group 2.1.2.2', false)
-      ])
-    ]),
-    new Group('Group 2.2', false)
-  ])
+        new GroupImpl('Cucumber', false)
+    ])
 ];
 
 
-
-export { type IGroup, Group, groups };
+export { type Group, type GroupImpl, groups };

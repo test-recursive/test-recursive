@@ -1,0 +1,32 @@
+.group-item {
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.group-item:hover {
+  background-color: #e0e0e0;
+}
+
+.expanded {
+  font-weight: bold;
+  color: green;
+}
+
+.collapsed {
+  font-weight: normal;
+  color: #555;
+}
+
+.app-recursive-group-list {
+  padding-left: 20px;
+}
+
+.group-subgroups {
+  padding-left: 20px;  // Adjust the left padding for each level of recursion (4 spaces equivalent)
+  margin-left: 20px;
+}

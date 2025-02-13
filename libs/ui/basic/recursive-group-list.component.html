@@ -1,32 +1,19 @@
 @if (groups) {
-  @for (group of groups; track $index) {
-    <div class="group-item">
-      <div
-        (click)="group.toggleGroup()"
-        [ngClass]="{'expanded': group.isExpanded(), 'collapsed': !group.isExpanded()}"
-        class="group-node">
-
-        <!-- Toggle icon -->
-        <span>
-          <fa-icon
-            [ngClass]="{
-              'fa-chevron-down': group.isExpanded(),
-              'fa-chevron-up': !group.isExpanded()
-            }" class="toggle-icon">
-          </fa-icon>
-        </span>
-
-        <!-- Group name -->
-        <span class="group-name">{{ group.name }}</span>
-      </div>
+  <ul>
+    @for (group of groups; track $index) {
+      <li (click)="group.toggleGroup()" [ngClass]="{'expanded': group.isExpanded(), 'collapsed': !group.isExpanded()}" class="group-item">
+        <span>{{ group.name }}</span>
+        @if (group.isGroup()) {
+          <span> (click to expand/collapse)</span>
+        }
+      </li>
 
       <!-- Conditionally render subgroups if the group is expanded -->
       @if (group && group.isExpanded()) {
-        <div class="group-subgroups">
-          <clx-recursive-group-list [groups]="group.groups ?? []"></clx-recursive-group-list>
-        </div>
+        <ul class="group-subgroups">
+          <app-recursive-group-list [groups]="group.groups ?? []"></app-recursive-group-list>
+        </ul>
       }
-    </div>
-  }
+    }
+  </ul>
 }
-

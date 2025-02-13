@@ -4,11 +4,11 @@
   "projectType": "application",
   "generators": {
     "@schematics/angular:component": {
-      "style": "css"
+      "style": "scss"
     }
   },
   "sourceRoot": "src",
-  "prefix": "clx",
+  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
@@ -20,7 +20,7 @@
           "zone.js"
         ],
         "tsConfig": "tsconfig.app.json",
-        "inlineStyleLanguage": "css",
+        "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
@@ -28,7 +28,7 @@
           }
         ],
         "styles": [
-          "src/styles.css"
+          "src/styles.scss"
         ],
         "scripts": []
       },
@@ -79,7 +79,7 @@
           "zone.js/testing"
         ],
         "tsConfig": "tsconfig.spec.json",
-        "inlineStyleLanguage": "css",
+        "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
@@ -87,7 +87,7 @@
           }
         ],
         "styles": [
-          "src/styles.css"
+          "src/styles.scss"
         ],
         "scripts": []
       }
