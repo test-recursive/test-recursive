@@ -28,7 +28,13 @@
           }
         ],
         "styles": [
-          "src/styles.css"
+          "src/styles.css",
+          "assets/fonts/font-awesome/css/fontawesome.min.css",
+          "assets/fonts/font-awesome/css/fontawesome.min.css",
+          "assets/fonts/font-awesome/css/brands.min.css",
+          "assets/fonts/font-awesome/css/light.min.css",
+          "assets/fonts/font-awesome/css/regular.min.css",
+          "assets/fonts/font-awesome/css/solid.min.css"
         ],
         "scripts": []
       },
