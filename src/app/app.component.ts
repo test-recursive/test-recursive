@@ -22,52 +22,106 @@ export class AppComponent implements OnInit {
   private fetchGroups(): IGroupData[] {
     const groups = [
       new Group('Group A', false, [
-        new Group('Group A.2', false, [
-          new Group('Group A.2.1', false),
-          new Group('Group A.2.2', false, [
-            new Group('Group A.2.2.1', false, [
-              new Group('Group A.2.2.1.1', false, [
-                new Group('Group A.2.2.1.1.1', false),
-                new Group('Group A.2.2.1.1.2', false)
+        new Group('Group A.1', false, [
+          new Group('Group A.1.1', false, [
+            new Group('Group A.1.1.1', false),
+            new Group('Group A.1.1.2', false)
+          ]),
+          new Group('Group A.1.2', false, [
+            new Group('Group A.1.2.1', false, [
+              new Group('Group A.1.2.1.1', false, [
+                new Group('Group A.1.2.1.1.1', false),
+                new Group('Group A.1.2.1.1.2', false)
               ])
             ]),
-            new Group('Group A.2.2.2', false)
+            new Group('Group A.1.2.2', false),
+            new Group('Group A.1.2.3', false)
           ])
         ]),
-        new Group('Group A.2', false)
+        new Group('Group A.2', false, [
+          new Group('Group A.2.1', false, [
+            new Group('Group A.2.1.1', false),
+            new Group('Group A.2.1.2', false)
+          ]),
+          new Group('Group A.2.2', false, [
+            new Group('Group A.2.2.1', false),
+            new Group('Group A.2.2.2', false)
+          ])
+        ])
       ]),
       new Group('Group B', false, [
         new Group('Group B.1', false, [
-          new Group('Group B.1.1', false),
+          new Group('Group B.1.1', false, [
+            new Group('Group B.1.1.1', false),
+            new Group('Group B.1.1.2', false)
+          ]),
           new Group('Group B.1.2', false, [
             new Group('Group B.1.2.1', false, [
               new Group('Group B.1.2.1.1', false, [
                 new Group('Group B.1.2.1.1.1', false)
               ])
             ]),
-            new Group('Group B.1.2.2', false)
+            new Group('Group B.1.2.2', false),
+            new Group('Group B.1.2.3', false)
           ])
         ]),
-        new Group('Group B.2', false)
+        new Group('Group B.2', false, [
+          new Group('Group B.2.1', false),
+          new Group('Group B.2.2', false)
+        ])
       ]),
       new Group('Group C', false, [
         new Group('Group C.1', false, [
           new Group('Group C.1.1', false, [
-            new Group('Group C.1.2.1', false, [
-              new Group('Group C.1.2.1.1', false)
-            ]),
-            new Group('Group C.1.2.2', false)
+            new Group('Group C.1.1.1', false),
+            new Group('Group C.1.1.2', false),
+            new Group('Group C.1.1.3', false)
           ]),
-          new Group('Group C.1.2', false)
+          new Group('Group C.1.2', false, [
+            new Group('Group C.1.2.1', false, [
+              new Group('Group C.1.2.1.1', false, [
+                new Group('Group C.1.2.1.1.1', false)
+              ])
+            ]),
+            new Group('Group C.1.2.2', false),
+            new Group('Group C.1.2.3', false)
+          ])
         ]),
-        new Group('Group C.2', false)
+        new Group('Group C.2', false, [
+          new Group('Group C.2.1', false),
+          new Group('Group C.2.2', false)
+        ])
+      ]),
+      // Adding a couple of new base nodes
+      new Group('Group D', false, [
+        new Group('Group D.1', false, [
+          new Group('Group D.1.1', false),
+          new Group('Group D.1.2', false, [
+            new Group('Group D.1.2.1', false),
+            new Group('Group D.1.2.2', false)
+          ])
+        ]),
+        new Group('Group D.2', false, [
+          new Group('Group D.2.1', false),
+          new Group('Group D.2.2', false)
+        ])
+      ]),
+      new Group('Group E', false, [
+        new Group('Group E.1', false, [
+          new Group('Group E.1.1', false),
+          new Group('Group E.1.2', false)
+        ]),
+        new Group('Group E.2', false, [
+          new Group('Group E.2.1', false),
+          new Group('Group E.2.2', false, [
+            new Group('Group E.2.2.1', false),
+            new Group('Group E.2.2.2', false)
+          ])
+        ])
       ])
     ];
-
-    // Returning the groups directly, no need to redefine them
     return groups;
   }
-
 
   // Convert IGroupData to Group instances
   private getMappedGroups(): Group[] {
