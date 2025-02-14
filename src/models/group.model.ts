@@ -1,18 +1,20 @@
 interface IGroup {
-  name: string;             // Name of the group
-  expanded: boolean;        // Indicates if the group is expanded or not
-  groups?: IGroup[];         // A list of child groups
+  name: string;
+  expanded: boolean;
+  groups?: IGroup[];
+}
 
-  // Methods added to the Group interface to make it complete
+interface IGroupMethods {
   toggleGroup(): void;
   isGroup(): boolean;
   isExpanded(): boolean;
 }
-class Group implements IGroup {
+
+class Group implements IGroup, IGroupMethods {
   constructor(
     public name: string,
     public expanded: boolean = false,
-    public groups: IGroup[] = []
+    public groups: Group[] = []
   ) {}
 
   toggleGroup(): void {
@@ -28,8 +30,4 @@ class Group implements IGroup {
   }
 }
 
-
-
-
-
-export { type IGroup, Group };
+export { type IGroup, type IGroupMethods, Group };

@@ -2,4 +2,7 @@
 <h1 class="text-2xl font-bold">Recursive Group Examples</h1>
 
 <!-- <router-outlet></router-outlet> -->
-<clx-recursive-group-list [groups]="groups"></clx-recursive-group-list>
+<div>
+  <h1>Group List</h1>
+  <clx-recursive-group-list [groups]="groups || []"></clx-recursive-group-list>
+</div>
