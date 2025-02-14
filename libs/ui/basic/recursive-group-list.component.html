@@ -1,3 +1,15 @@
+<!-- <ul>
+  <li *ngFor="let group of groups">
+    <div (click)="toggleGroup(group)">
+      {{ group.name }} ({{ group.isExpanded() ? 'Expanded' : 'Collapsed' }})
+    </div>
+
+    <div *ngIf="group.isExpanded()">
+      <clx-recursive-group-list [groups]="group.groups || []"></clx-recursive-group-list>
+    </div>
+  </li>
+</ul> -->
+
 <div *ngFor="let group of groups; let i = index" class="m-1">
   <div
     (click)="group.toggleGroup()"
@@ -17,7 +29,7 @@
   <!-- Conditionally render subgroups if the group is expanded -->
   <div *ngIf="group.isExpanded()">
     <div class="group-subgroups ml-5 p-1.25">
-      <clx-recursive-group-list [groups]="group.groups ?? []"></clx-recursive-group-list>
+      <clx-recursive-group-list [groups]="group.groups"></clx-recursive-group-list>
     </div>
   </div>
 </div>

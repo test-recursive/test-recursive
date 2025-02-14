@@ -20,24 +20,54 @@ export class AppComponent implements OnInit {
 
   // Define the raw IGroupData array
   private fetchGroups(): IGroupData[] {
-    return [
-      {
-        name: 'Group 1',
-        expanded: false,
-        groups: [
-          { name: 'Subgroup 1.1', expanded: false },
-          { name: 'Subgroup 1.2', expanded: false }
-        ]
-      },
-      {
-        name: 'Group 2',
-        expanded: false,
-        groups: [
-          { name: 'Subgroup 2.1', expanded: false }
-        ]
-      }
+    const groups = [
+      new Group('Group A', false, [
+        new Group('Group A.2', false, [
+          new Group('Group A.2.1', false),
+          new Group('Group A.2.2', false, [
+            new Group('Group A.2.2.1', false, [
+              new Group('Group A.2.2.1.1', false, [
+                new Group('Group A.2.2.1.1.1', false),
+                new Group('Group A.2.2.1.1.2', false)
+              ])
+            ]),
+            new Group('Group A.2.2.2', false)
+          ])
+        ]),
+        new Group('Group A.2', false)
+      ]),
+      new Group('Group B', false, [
+        new Group('Group B.1', false, [
+          new Group('Group B.1.1', false),
+          new Group('Group B.1.2', false, [
+            new Group('Group B.1.2.1', false, [
+              new Group('Group B.1.2.1.1', false, [
+                new Group('Group B.1.2.1.1.1', false)
+              ])
+            ]),
+            new Group('Group B.1.2.2', false)
+          ])
+        ]),
+        new Group('Group B.2', false)
+      ]),
+      new Group('Group C', false, [
+        new Group('Group C.1', false, [
+          new Group('Group C.1.1', false, [
+            new Group('Group C.1.2.1', false, [
+              new Group('Group C.1.2.1.1', false)
+            ]),
+            new Group('Group C.1.2.2', false)
+          ]),
+          new Group('Group C.1.2', false)
+        ]),
+        new Group('Group C.2', false)
+      ])
     ];
+
+    // Returning the groups directly, no need to redefine them
+    return groups;
   }
+
 
   // Convert IGroupData to Group instances
   private getMappedGroups(): Group[] {
