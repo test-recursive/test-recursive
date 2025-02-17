@@ -13,8 +13,8 @@
 <div *ngFor="let group of groups; let i = index" class="m-1">
   <div
     (click)="group.toggleGroup()"
-    [ngClass]="{'expanded': group.isExpanded(), 'collapsed': !group.isExpanded()}"
-    class="group-node  p-2.5 border-2 border-[#1E3A8A] rounded-md cursor-pointer flex items-center justify-start transition-colors duration-300 hover:bg-[#87CEFA]">
+    [ngClass]="{'expanded cursor-pointer transition-colors duration-300': group.isExpanded(), 'collapsed': !group.isExpanded(), ' hover:bg-[#87CEFA]': group.isGroup()}"
+    class="group-node  p-2.5 border-2 border-[#1E3A8A] rounded-md flex items-center justify-start">
 
     <!-- Toggle icon -->
     <span *ngIf="group.isGroup()">
