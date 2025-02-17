@@ -1,16 +1,5 @@
-interface IGroup {
-  name: string;
-  expanded: boolean;
-  groups?: IGroup[];
-}
-
-interface IGroupMethods {
-  toggleGroup(): void;
-  isGroup(): boolean;
-  isExpanded(): boolean;
-}
-
-class Group implements IGroup, IGroupMethods {
+import { IGroupData, IGroupMethods } from './interfaces'
+export class Group implements IGroupData, IGroupMethods {
   constructor(
     public name: string,
     public expanded: boolean = false,
@@ -46,5 +35,3 @@ class Group implements IGroup, IGroupMethods {
     return this.expanded;
   }
 }
-
-export { type IGroup, type IGroupMethods, Group };

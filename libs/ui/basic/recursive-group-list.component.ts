@@ -9,9 +9,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./recursive-group-list.component.css']
 })
 export class RecursiveGroupListComponent {
-  @Input() groups: Group[] = [];  // Accept Group[] as input
+  @Input() groups: Group[] = [];
 
   toggleGroup(group: Group) {
-    group.toggleGroup();  // Toggle the group's expanded state
+    group.toggleGroup();
   }
 }
