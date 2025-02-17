@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RecursiveGroupListComponent } from '../../libs/ui/basic/recursive-group-list.component';
+import { RecursiveGroupListComponent } from '../../libs/ui/recursive-group-list/recursive-group-list.component';
 import { Group } from '../models/group.model';
 import { IGroupData } from '../models/interfaces/group-data.model';
 
