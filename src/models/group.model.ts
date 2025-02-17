@@ -20,6 +20,7 @@ export class Group implements IGroupData, IGroupMethods {
   private setAllChildGroupsCollapsed(group: Group): void {
     group.groups.forEach(childGroup => {
       childGroup.expanded = false;
+
       // If the child group has its own children, collapse them as well
       if (childGroup.groups.length > 0) {
         this.setAllChildGroupsCollapsed(childGroup);

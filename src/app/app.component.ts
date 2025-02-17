@@ -5,7 +5,7 @@ import { Group } from '../models/group.model';
 import { IGroupData } from '../models/interfaces/group-data.model';
 
 @Component({
-  selector: 'app-root',
+  selector: 'clx-recursive-group-root',
   standalone: true,
   imports: [CommonModule, RecursiveGroupListComponent],
   templateUrl: './app.component.html',
