@@ -5,22 +5,19 @@ import { Component, EventEmitter, HostListener, Input, Output } from '@angular/c
   standalone: true,
   templateUrl: './context-menu.component.html',
 })
+
 export class ContextMenuComponent {
   @Input() groupId!: string;
   @Input() visible = false;
   @Input() position = { x: 0, y: 0 };
 
-  @Output() rename = new EventEmitter<string>();
-  @Output() delete = new EventEmitter<string>();
   @Output() close = new EventEmitter<void>();
 
   onRename() {
-    this.rename.emit(this.groupId);
     this.close.emit();
   }
 
   onDelete() {
-    this.delete.emit(this.groupId);
     this.close.emit();
   }
 

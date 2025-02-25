@@ -22,8 +22,7 @@
       @if (group.isExpanded()) {
         <div class="group-subgroups ml-5 p-1.25">
           <clx-recursive-group-list
-            [groups]="group.subGroups"
-            (selectedGroupChange)="selectedGroupChange.emit($event)">
+            [groups]="group.subGroups">
           </clx-recursive-group-list>
         </div>
       }
@@ -36,7 +35,6 @@
   [groupId]="selectedGroupId"
   [visible]="contextMenuVisible"
   [position]="contextMenuPosition"
-  (delete)="deleteGroup($event)"
   (close)="contextMenuVisible = false">
 </clx-context-menu>
 

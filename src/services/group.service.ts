@@ -1,3 +1,4 @@
+
 import { Injectable, signal } from '@angular/core';
 import { Group } from '../models/group.model';
 
@@ -7,10 +8,12 @@ import { Group } from '../models/group.model';
 export class GroupService {
   private groups = signal<Group[]>([]);
   private loading = signal<boolean>(false);
-  public selectedGroup = signal<Group | null>(null);
+  private selectedGroup$ = signal<Group | null>(null);
 
-  // Expose groups as a signal for components to use
-  getGroups = this.groups;
+  // Expose groups, selectedGroup and loading as a signal for components to use
+  getGroups$ = this.groups;
+  getSelectedGroup$ = this.selectedGroup$;
+  getLoading$ = this.loading;
 
   constructor() {
     this.fetchGroups();
@@ -115,78 +118,39 @@ export class GroupService {
     }, 1000);
   }
 
-  // Helper function to create a group with nested groups
-  private createGroup(
-      id: string = crypto.randomUUID.toString(),
-      name: string,
-      description: string,
-      expanded: boolean,
-      parentId: string = '',
-      subgroups: Group[] = []): Group {
-    return new Group(id, name, description, expanded, parentId, subgroups);
-  }
-
-  setSelectedGroup(group: Group): void {
-    console.log(`Group toggled in service: ${group.id}`);
-    this.selectedGroup.set(group);
-  }
-
-  onRenameGroup(newName: string): void {
-    console.log(`Rename group to: ${newName}`);
-    var group = this.selectedGroup();
-    console.log(`Group Id of ${group!.id} renamed to: ${newName}`);
-  }
-
-  // renameGroup(groupId: string) {
-
-  //   if (!group) return;
-
-  //   const newName = prompt('Enter a new name for the group:', group.name);
-  //   if (newName && newName.trim()) {
-  //     group.name = newName.trim();
-  //     console.log(`Group renamed to: ${group.name}`);
-  //   } else {
-  //     console.log('Rename canceled or invalid input');
-  //   }
-  // }
-
-  onMove(groupId: string, newParentId: string, groups: Group[]) {
-    const groupToMove = this.findGroupById(groupId, groups);
-    if (groupToMove) {
-        this.removeGroupById(groupId, groups);
-        const newParent = this.findGroupById(newParentId, groups);
-        if (newParent) {
-            newParent.subGroups = newParent.subGroups || [];
-            newParent.subGroups.push(groupToMove);
-        }
+  // helper method to load mock data
+  private createGroup = (
+    id: string = crypto.randomUUID.toString(),
+    name: string,
+    description: string,
+    expanded: boolean,
+    parentId: string = '',
+    subgroups: Group[] = []): Group => {
+      return new Group(id, name, description, expanded, parentId, subgroups);
     }
-}
 
-  private findGroupById(id: string, groups: Group[]): Group | null {
-    for (let group of groups) {
-      if (group.id === id) return group;
-      if (group.subGroups) {
-        const found = this.findGroupById(id, group.subGroups);
-        if (found) return found;
-      }
-    }
-    return null;
-  }
+    toggleGroup = (groupId: string) => {
+      this.groups.update(groups =>
+        groups.map(group => {
+          if (group.id === groupId) {
+            const updatedGroup = Object.assign(Object.create(Object.getPrototypeOf(group)), group);
+            updatedGroup.expanded = !group.expanded;
+            return updatedGroup;
+          }
+          return group;
+        })
+      );
+    };
 
-  private removeGroupById(id: string, groups: Group[]): boolean {
-    for (let i = 0; i < groups.length; i++) {
-      if (groups[i].id === id) {
-        groups.splice(i, 1);
-        return true;
-      }
-      if (groups[i].subGroups) {
-        if (this.removeGroupById(id, groups[i].subGroups)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
+  renameGroup = (groupId: string, newName: string) => {
+    this.groups.update(groups =>
+      groups.map(group =>
+        group.id === groupId ? new Group(group.id, newName, group.description, group.expanded, group.parentId, group.subGroups) : group
+      )
+    );
+  };
 
-
+  deleteGroup = (groupId: string) => {
+    this.groups.update(groups => groups.filter(group => group.id !== groupId));
+  };
 }

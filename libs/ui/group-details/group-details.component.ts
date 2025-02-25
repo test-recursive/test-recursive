@@ -8,6 +8,8 @@ import { Group } from '../../../src/models/group.model';
   imports: [CommonModule],
   templateUrl: './group-details.component.html',
 })
+
 export class GroupDetailsComponent {
   @Input() selectedGroup = signal<Group | null>(null);
+
 }

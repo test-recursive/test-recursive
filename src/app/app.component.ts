@@ -16,11 +16,11 @@ export class AppComponent {
 
   title = 'test-recursive';
   private groupService = inject(GroupService);
-  groups = this.groupService.getGroups;
-
-  selectedGroup = signal<Group | null>(null);
+  groups = this.groupService.getGroups$;
+  selectedGroup = this.groupService.getSelectedGroup$;
 
   onSelectedGroupChange(group: Group | null) {
+    console.log(`Selected group changed: ${group?.id} ${group?.name}`);
     this.selectedGroup.set(group);
   }
 }
