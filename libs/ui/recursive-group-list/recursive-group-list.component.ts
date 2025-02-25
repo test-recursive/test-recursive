@@ -47,7 +47,7 @@ export class RecursiveGroupListComponent {
   }
 
   renameGroup(newName: string) {
-    const updatedGroup = this.groupService.renameGroupById(this.groupService.selectedGroup$()!.id, newName.trim());
+    const updatedGroup = this.groupService.renameGroupById(this.selectedGroup()!.id, newName.trim());
       if (updatedGroup) {
         console.log(`Group renamed to: ${updatedGroup.name}`);
       }
