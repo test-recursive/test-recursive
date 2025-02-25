@@ -144,12 +144,20 @@ export class GroupService {
 
   renameGroup = (groupId: string, newName: string) => {
     console.log(`Renaming group: ${groupId} to ${newName}`);
-    newName = newName.trim();
+
     this.groups.update(groups =>
-      groups.map(group =>
-        group.id === groupId ? new Group(group.id, newName, group.description, group.expanded, group.parentId, group.subGroups) : group
-      )
+      groups.map(group => {
+        if (group.id === groupId) {
+          // Ensure we maintain the class prototype and methods
+          const updatedGroup = Object.assign(Object.create(Object.getPrototypeOf(group)), group);
+          updatedGroup.onRenameGroup(newName.trim());
+          return updatedGroup;
+        }
+        return group;
+      })
     );
+
+    console.log(`Group ${groupId} renamed to: ${newName}`);
   };
 
   deleteGroup = (groupId: string) => {
