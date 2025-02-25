@@ -143,6 +143,8 @@ export class GroupService {
     };
 
   renameGroup = (groupId: string, newName: string) => {
+    console.log(`Renaming group: ${groupId} to ${newName}`);
+    newName = newName.trim();
     this.groups.update(groups =>
       groups.map(group =>
         group.id === groupId ? new Group(group.id, newName, group.description, group.expanded, group.parentId, group.subGroups) : group
