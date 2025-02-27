@@ -14,8 +14,23 @@ export class ContextMenuComponent {
 
   @Output() rename = new EventEmitter<{ newName: string; group: GroupModel }>();
   @Output() addGroup = new EventEmitter<{ group: GroupModel }>();
+  @Output() moveGroup = new EventEmitter<{ movingGroup: GroupModel, receivingGroup: GroupModel }>();
   @Output() delete = new EventEmitter<{ group: GroupModel }>();
   @Output() close = new EventEmitter<void>();
+
+  movingGroup: GroupModel | undefined;
+  receivingGroup: GroupModel | undefined;
+
+  onMoveGroup = (): void => {
+    this.movingGroup = this.group;
+    if (!this.group || !this.receivingGroup) {
+      console.error("Error: No group is selected. Cannot move.");
+      return;
+    }
+    console.log(`onMoveGroup: moving \n\r ID: ${this.group.id}\n\rNAME: ${this.group.name}`);
+    console.log(`onMoveGroup: receiving \n\r ID: ${this.receivingGroup.id}\n\rNAME: ${this.receivingGroup.name}`);
+    this.moveGroup.emit({ movingGroup: this.group, receivingGroup: this.receivingGroup });
+  }
 
   onAddGroup = () => {
     console.log(`onAddGroup \n\r ID: ${this.group.id}\n\rNAME: ${this.group.name}`);

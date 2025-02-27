@@ -35,9 +35,15 @@
   [visible]="contextMenuVisible"
   [position]="contextMenuPosition"
   [group]="selectedGroup!"
+  (moveGroup)="onMoveGroup($event.movingGroup, $event.receivingGroup)"
   (rename)="renameGroup($event.newName, $event.group)"
   (delete)="deleteGroup($event.group)"
   (close)="contextMenuVisible = false"
 >
 </clx-context-menu>
+
+<clx-move-group
+  [group]="selectedGroup!"
+  (moveGroup)="onMoveGroup($event.movingGroup, $event.receivingGroup)"
+></clx-move-group>
 } }
