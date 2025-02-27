@@ -1,1 +1,6 @@
-<p>move-group works!</p>
+<div class="move-group-container">
+  <h3>Move: {{ group.name }}</h3>
+  <p>Select a destination:</p>
+
+  <div (click)="confirmMove(group)">{{ group.name }}</div>
+</div>
