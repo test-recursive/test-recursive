@@ -12,29 +12,66 @@ export class RecursiveGroupListComponent {
 
   @Input() groups: GroupModel[] = [];
   @Output() selectedGroupChange = new EventEmitter<GroupModel>();
-
-  onGroupClick(group: GroupModel) {
-    this.selectedGroupChange.emit(group);
-    if (this.isGroup(group) && group.subGroups) {
-      this.toggleGroup(group);
-    }
-  }
+  @Output() groupsChange = new EventEmitter<GroupModel[]>();
 
   selectedGroup: GroupModel | undefined = undefined;
+  targetGroup: GroupModel | undefined = undefined;
   contextMenuVisible = false;
   contextMenuPosition = { x: 0, y: 0 };
 
+  // onGroupClick(group: GroupModel) {
+  //   this.selectedGroupChange.emit(group);
+  //   if (this.isGroup(group) && group.subGroups) {
+  //     this.toggleGroup(group);
+  //   }
+  // }
+
+  onGroupClick(group: GroupModel) {
+    if (this.selectedGroup && this.selectedGroup !== group) {
+      this.targetGroup = group;
+      if (confirm(`Move ${this.selectedGroup.name} to ${this.targetGroup.name}?`)) {
+        this.moveGroup(this.selectedGroup, this.targetGroup);
+      }
+      this.selectedGroup = undefined;
+      this.targetGroup = undefined;
+    }
+  }
+
+  // onRightClick(event: MouseEvent, group: GroupModel) {
+  //   event.preventDefault();
+  //   this.selectedGroupChange.emit(group);
+  //   console.log(`Right-clicked on: ${group.id} - ${group.name}`);
+
+  //   this.selectedGroup = group;
+  //   this.contextMenuVisible = true;
+  //   this.contextMenuPosition = { x: event.clientX, y: event.clientY };
+
+  //   console.log(`Updated selectedGroup for menu: ${this.selectedGroup.id} - ${this.selectedGroup.name}`);
+  // }
+
   onRightClick(event: MouseEvent, group: GroupModel) {
     event.preventDefault();
-    this.selectedGroupChange.emit(group);
-    console.log(`Right-clicked on: ${group.id} - ${group.name}`);
-
     this.selectedGroup = group;
     this.contextMenuVisible = true;
     this.contextMenuPosition = { x: event.clientX, y: event.clientY };
-
-    console.log(`Updated selectedGroup for menu: ${this.selectedGroup.id} - ${this.selectedGroup.name}`);
   }
+
+  moveGroup(group: GroupModel, targetGroup: GroupModel) {
+    console.log(`Moving group: ${group.id} - ${group.name} to: ${targetGroup.id} ${targetGroup.name}`);
+    this.removeGroup(group, this.groups);
+    targetGroup.subGroups = [...(targetGroup.subGroups || []), group];
+    this.groupsChange.emit(this.groups);
+  }
+
+  removeGroup(groupToRemove: GroupModel, groupList: GroupModel[]): boolean {
+    const index = groupList.findIndex(group => group.id === groupToRemove.id);
+    if (index !== -1) {
+      groupList.splice(index, 1);
+      return true;
+    }
+    return groupList.some(group => this.removeGroup(groupToRemove, group.subGroups || []));
+  }
+
 
   renameGroup = (newName: string, group: GroupModel) => {
     console.log(`Renaming group: ${group.id} - ${group.name} to: ${newName.trim()}`);
@@ -95,12 +132,20 @@ export class RecursiveGroupListComponent {
   }
 
   isGroup = (group: GroupModel): boolean => {
-    return !!group.subGroups && (group.subGroups?.length ?? 0) > 0;
+    return !!group.subGroups && group.subGroups.length > 0;
   }
 
   isExpanded = (group: GroupModel): boolean => {
     return group.expanded;
   }
+
+  // isGroup = (group: GroupModel): boolean => {
+  //   return !!group.subGroups && (group.subGroups?.length ?? 0) > 0;
+  // }
+
+  // isExpanded = (group: GroupModel): boolean => {
+  //   return group.expanded;
+  // }
 
   // Helper method to set all child groups to collapsed
   private setAllChildGroupsCollapsed = (group: GroupModel): void => {

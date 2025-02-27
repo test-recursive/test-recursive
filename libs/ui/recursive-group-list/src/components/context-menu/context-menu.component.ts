@@ -14,12 +14,18 @@ export class ContextMenuComponent {
 
   @Output() rename = new EventEmitter<{ newName: string; group: GroupModel }>();
   @Output() addGroup = new EventEmitter<{ group: GroupModel }>();
+  @Output() moveGroup = new EventEmitter<{ group: GroupModel, targetGroup: GroupModel }>();
   @Output() delete = new EventEmitter<{ group: GroupModel }>();
   @Output() close = new EventEmitter<void>();
 
   onAddGroup = () => {
     console.log(`onAddGroup \n\r ID: ${this.group.id}\n\rNAME: ${this.group.name}`);
     this.addGroup.emit({ group: this.group });
+  }
+
+  onMoveGroup = () => {
+    console.log(`onMoveGroup \n\r ID: ${this.group.id}\n\rNAME: ${this.group.name}`);
+
   }
 
   onRenameGroup = (): void => {

@@ -60,4 +60,9 @@ export class GroupListComponent {
     }
     return null;
   }
+
+  resetGroupsAfterMove(groups: GroupModel[]) {
+    console.log(`resetGroupsAfterMove \n\r GROUPS: ${JSON.stringify(groups)}`);
+    this.groups = [...groups];
+  }
 }
