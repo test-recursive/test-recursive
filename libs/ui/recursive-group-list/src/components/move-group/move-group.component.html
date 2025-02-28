@@ -10,7 +10,9 @@
     <p>{{ groups | json }}</p>
 
     @for (group of groups; track $index) {
-    <p>{{ group.name }}</p>
+    <p>
+      <strong>{{ group.name }}</strong>
+    </p>
     <div class="m-1">
       <div (click)="setTargetGroup(group)">
         <span class="group-name ml-2.5 font-bold">{{ group.name }}</span>
