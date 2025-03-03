@@ -72,15 +72,10 @@ export class MoveGroupComponent implements OnChanges {
 
   moveGroups = (movingGroup: GroupModel, targetGroup: GroupModel) => {
 
-
     // Confirm the move action before proceeding
     if (!confirm(`Are you sure you want to move "${movingGroup.name}" under "${targetGroup.name}"?`)) {
       return;
     }
-
-
-
-
 
     // Emit the updated groups array
     this.updateGroups.emit({ updatedGroups: [...this.groups] });
